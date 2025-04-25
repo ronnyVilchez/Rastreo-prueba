@@ -26,11 +26,14 @@ export const iniciarSimulador = (req, res) => {
 };
 
 export const detenerSimulador = (req, res) => {
-  if (simuladorProceso) {
-    simuladorProceso.kill();
-    simuladorProceso = null;
-    return res.json({ message: 'Simulador detenido' });
-  } else {
-    return res.status(400).json({ message: 'No hay simulador en ejecución' });
-  }
-};
+    console.log('Deteniendo simulador...');
+    
+    if (simuladorProceso) {
+      simuladorProceso.kill();
+      simuladorProceso = null;
+      return res.json({ message: 'Simulador detenido' });
+    } else {
+      return res.status(400).json({ message: 'No hay simulador en ejecución' });
+    }
+  };
+  

@@ -6,7 +6,7 @@ export default function setupSocket(io) {
 
     socket.on('ubicacion-repartidor', (data) => {
       console.log('📍 Ubicación recibida:', data)
-      io.emit('ubicacion-actualizada', data)
+      io.emit('ubicacion-repartidor', data)
       notificarCambioUbicacion(data)
     })
 
