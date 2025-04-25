@@ -5,6 +5,6 @@ import { iniciarSimulador } from '../controllers/simuladorController.js'
 const router = express.Router()
 
 router.post('/actualizar-tramo', actualizarEstado)
-router.post('/api/simulador/iniciar', iniciarSimulador)
+router.post('/simulador', iniciarSimulador)
 
 export default router
