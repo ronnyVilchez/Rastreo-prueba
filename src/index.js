@@ -15,7 +15,7 @@ const io = new Server(server, {
   cors: { origin: '*' }
 })
 
-//app.use(validCors)
+app.use(validCors)
 app.use(express.json())
 app.use('/api/pedidos', pedidoRoutes)
 
