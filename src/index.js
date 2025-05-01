@@ -1,7 +1,8 @@
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
-import pedidoRoutes from './Routes/pedidos.js'
+import pedidoRoutes from './Routes/pedidos.routes.js'
+import authRoutes from './Routes/auth.routes.js'
 import setupSocket from './socket.js'
 import { validCors } from './Middlewares/validCors.js'
 import dotenv from 'dotenv'
@@ -18,6 +19,7 @@ const io = new Server(server, {
 app.use(validCors)
 app.use(express.json())
 app.use('/api/pedidos', pedidoRoutes)
+app.use('/api/auth',authRoutes)
 
 setupSocket(io) // delegamos el manejo de sockets
 
