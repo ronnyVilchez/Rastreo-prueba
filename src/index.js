@@ -12,18 +12,26 @@ dotenv.config()
 const app = express()
 const server = http.createServer(app)
 
+// Configurar WebSocket
 const io = new Server(server, {
-  cors: { origin: '*' }
+  cors: {
+    origin: '*', // en producción lo ideal es restringir esto
+    methods: ['GET', 'POST'],
+  },
 })
 
+// Middleware
 app.use(validCors)
 app.use(express.json())
-app.use('/api/pedidos', pedidoRoutes)
-app.use('/api/auth',authRoutes)
 
-setupSocket(io) // delegamos el manejo de sockets
+// Rutas
+app.use('/api/pedidos', pedidoRoutes)
+app.use('/api/auth', authRoutes)
+
+// WebSocket (delega en archivo externo)
+setupSocket(io)
 
 const PORT = process.env.PORT || 3000
 server.listen(PORT, () => {
-  console.log(`Servidor en http://localhost:${PORT}`)
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`)
 })
